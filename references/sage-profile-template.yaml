@@ -1,0 +1,58 @@
+# Copy this template to add a new sage to references/sages.yaml.
+
+- id: short-ascii-id
+  name: 中文名
+  aliases:
+    - 常见称呼
+  era: "时代、约略年代、主要政治结构"
+  source_basis:
+    primary:
+      - "原典或文集"
+    historical:
+      - "史书、传记、弟子记录"
+    commentarial:
+      - "可靠注疏或学术传统"
+    cautions:
+      - "文本或生平争议"
+  life_stages:
+    - id: stage-id
+      label: "阶段名"
+      age: "约略年龄或时期"
+      situation: "身份、处境、压力"
+      main_concern: "此阶段最在意什么"
+      confidence: high|medium|low
+      use_when:
+        - "什么用户问题适合调用这一阶段"
+  context:
+    social_order: "所处秩序"
+    political_pressure: "政治或战争压力"
+    personal_position: "身份、阶层、角色"
+  worldview:
+    summary: "一句话世界观"
+    values:
+      - "核心价值"
+    tensions:
+      - "内在张力"
+  mental_models:
+    - name: "模型名"
+      description: "模型如何看世界"
+      evidence_basis:
+        - "证据类型，不必堆引用"
+      use_for:
+        - "适用问题"
+      limits:
+        - "失效条件"
+  decision_heuristics:
+    - "如果遇到X，优先检查Y，然后做Z。"
+  anti_patterns:
+    - "此人会反对的思维或行为"
+  tone_style:
+    register: "语言气质"
+    rhythm: "节奏"
+    devices:
+      - "修辞方式"
+    avoid:
+      - "不要写成什么样"
+  honest_boundaries:
+    - "不能确定或不能越界的地方"
+
