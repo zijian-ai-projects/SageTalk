@@ -95,4 +95,18 @@ if sed -n '1,12p' .agents/skills/sage-talk/SKILL.md | grep -E 'Route and orchest
 fi
 pass "sage-talk frontmatter avoids routing setup language"
 
+grep -q 'Language / 语言' README.md || fail "README missing language switch"
+grep -q '<a id="中文"></a>' README.md || fail "README missing Chinese anchor"
+grep -q '<a id="english"></a>' README.md || fail "README missing English anchor"
+grep -q '## 安装' README.md || fail "README missing Chinese installation section"
+grep -q '## Installation' README.md || fail "README missing English installation section"
+grep -q '## 使用' README.md || fail "README missing Chinese usage section"
+grep -q '## Usage' README.md || fail "README missing English usage section"
+grep -q '## 示例' README.md || fail "README missing Chinese examples section"
+grep -q '## Examples' README.md || fail "README missing English examples section"
+grep -q 'git clone git@github.com:zijian-ai-projects/SageTalk.git' README.md || fail "README missing clone command"
+grep -q '.agents/skills' README.md || fail "README missing canonical skill directory"
+grep -q 'sage-talk' README.md || fail "README missing sage-talk entrypoint"
+pass "README documents bilingual install, usage, and examples"
+
 echo "All static evals passed."
