@@ -2,42 +2,44 @@
 
 ## Current Phase
 
-Phase 15: improve the root README with bilingual installation, usage, and examples.
+Phase 16: split README into language-specific documents and clarify platform support.
 
 ## Goal
 
-Make the repository entrypoint useful for new users by documenting how to install SageTalk as a Codex
-repo skill, how to use `sage-talk` and individual `sage-*` skills, and how to switch between Chinese
-and English README sections.
+Replace the single bilingual README body with a cleaner GitHub-style entry README plus separate
+Chinese and English documentation files. Clarify that SageTalk is Codex-first, but not limited to
+Codex as content: other agents can port the `SKILL.md` directories if they support compatible skill
+mechanisms, and ordinary ChatGPT-style use is manual-context only.
 
 ## Milestones
 
-1. Add static README checks for language switch, Chinese/English installation, usage, examples, clone
-   command, `.agents/skills`, and `sage-talk`.
-2. Confirm the new static check fails against the old README.
-3. Rewrite `README.md` with Chinese and English sections.
-4. Record this phase in `.logs/phase-15-readme-bilingual.md`.
-5. Run `sh evals/check-static.sh`.
+1. Update static README checks to require `README.zh-CN.md` and `README.en.md`.
+2. Confirm the new static check fails while the repo still has only a single bilingual README.
+3. Replace root `README.md` with a concise language entrypoint.
+4. Add full Chinese and English README files.
+5. Record this phase in `.logs/phase-16-readme-split.md`.
+6. Run `sh evals/check-static.sh`.
 
 ## In Scope For This Round
 
-- Root `README.md` only for user-facing documentation.
-- Static eval guardrails for README requirements.
-- Process log for the README update.
+- Root README structure.
+- Chinese and English README content.
+- Platform-support clarification.
+- Static eval guardrails for the split README shape.
+- Process log for this documentation phase.
 
 ## Out Of Scope For This Round
 
 - Changing skill behavior.
-- Adding new sages.
+- Adding a dedicated installer script.
+- Adding hosted documentation or screenshots.
 - Changing the `.agents/skills/` canonical path.
-- Creating an installer script.
 - Committing or pushing unless explicitly requested.
 
 ## Acceptance Criteria
 
-- README has a visible `Language / 语言` switch.
-- README has Chinese and English anchors.
-- README documents installation, usage, and examples in both languages.
-- README names `.agents/skills` as the canonical skill directory.
-- README names `sage-talk` as the router entrypoint.
+- `README.md` links to `README.zh-CN.md` and `README.en.md`.
+- `README.zh-CN.md` contains Chinese installation, usage, examples, and non-Codex support boundary.
+- `README.en.md` contains English installation, usage, examples, and non-Codex support boundary.
+- Static evals check the split README structure.
 - `sh evals/check-static.sh` passes.
