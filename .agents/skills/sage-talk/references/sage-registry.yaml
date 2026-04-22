@@ -1,0 +1,68 @@
+# Lightweight routing registry for the sage-talk router.
+# This file is not a persona source of truth.
+
+sages:
+  - id: confucius
+    display_name: 孔子
+    aliases: [孔丘, 仲尼, Confucius]
+    skill_path: ../sage-confucius
+    tradition_tags: [confucian]
+    use_case_tags: [role-ethics, cultivation, family, education, trust, social-repair]
+    contrast_tags: [ritual-order, graded-obligation]
+    status: implemented
+  - id: mencius
+    display_name: 孟子
+    aliases: [孟轲, Mencius]
+    skill_path: ../sage-mencius
+    tradition_tags: [confucian]
+    use_case_tags: [moral-courage, righteousness, public-duty, self-respect]
+    contrast_tags: [righteousness-over-profit]
+    status: implemented
+  - id: laozi
+    display_name: 老子
+    aliases: [Laozi, 老聃]
+    skill_path: ../sage-laozi
+    tradition_tags: [daoist]
+    use_case_tags: [restraint, simplicity, burnout, non-coercive-action]
+    contrast_tags: [subtractive-action, reversal]
+    status: implemented
+  - id: zhuangzi
+    display_name: 庄子
+    aliases: [庄周, Zhuangzi]
+    skill_path: ../sage-zhuangzi
+    tradition_tags: [daoist]
+    use_case_tags: [perspective-shift, freedom, identity, status-traps]
+    contrast_tags: [frame-breaking]
+    status: implemented
+  - id: mozi
+    display_name: 墨子
+    aliases: [墨翟, Mozi]
+    skill_path: ../sage-mozi
+    tradition_tags: [mohist]
+    use_case_tags: [public-benefit, fairness, frugality, anti-aggression]
+    contrast_tags: [impartial-concern, utility]
+    status: implemented
+  - id: hanfeizi
+    display_name: 韩非子
+    aliases: [韩非, Han Feizi]
+    skill_path: ../sage-hanfeizi
+    tradition_tags: [legalist]
+    use_case_tags: [incentives, institutions, power, governance, enforcement]
+    contrast_tags: [institutional-realism]
+    status: implemented
+  - id: sunzi
+    display_name: 孙子
+    aliases: [孙武, Sunzi, Sun Tzu]
+    skill_path: ../sage-sunzi
+    tradition_tags: [military]
+    use_case_tags: [strategy, timing, cost, competition, terrain]
+    contrast_tags: [victory-without-battle]
+    status: implemented
+  - id: wang-yangming
+    display_name: 王阳明
+    aliases: [王守仁, 阳明先生, Wang Yangming]
+    skill_path: ../sage-wang-yangming
+    tradition_tags: [neo-confucian]
+    use_case_tags: [conscience, practice, self-discipline, knowing-and-acting]
+    contrast_tags: [action-through-conscience]
+    status: implemented

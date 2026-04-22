@@ -1,3 +1,7 @@
+# Legacy migration seed.
+# This file is preserved for extracting independent `.agents/skills/sage-*` skills one at a time.
+# It is no longer the canonical source of truth for new sage implementations.
+
 sages:
   - id: confucius
     name: 孔子
@@ -523,4 +527,3 @@ sages:
     honest_boundaries:
       - "龙场悟道的内在体验只能基于文本和传记谨慎表述。"
       - "阳明学后世流派复杂，不能把所有后学观点归给王阳明本人。"
-

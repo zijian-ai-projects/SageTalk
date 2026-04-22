@@ -1,0 +1,30 @@
+# Authoritative profile template for one independent sage skill.
+# Replace all placeholder values before use.
+
+id: short-ascii-id
+name: 中文名
+aliases: []
+era: ""
+source_basis:
+  primary: []
+  historical: []
+  commentarial: []
+  cautions: []
+life_stages: []
+context:
+  social_order: ""
+  political_pressure: ""
+  personal_position: ""
+worldview:
+  summary: ""
+  values: []
+  tensions: []
+mental_models: []
+decision_heuristics: []
+anti_patterns: []
+tone_style:
+  register: ""
+  rhythm: ""
+  devices: []
+  avoid: []
+honest_boundaries: []

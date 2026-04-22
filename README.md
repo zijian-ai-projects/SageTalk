@@ -1,106 +1,176 @@
 # SageTalk
 
-SageTalk is a Codex/Claude-style skill for multi-sage decision making, Q&A, and dialogue. It distills ancient Chinese thinkers into distinct cognitive operating systems so they can analyze the same modern problem from different worldviews.
+SageTalk is a Codex repo-skill monorepo for ancient Chinese sage reasoning.
 
-This is not a quotation generator and not simple roleplay. The skill asks: if each sage reasoned from his era, life stage, social position, values, mental models, and blind spots, what would he notice first, advise, warn against, and refuse to assume?
+The project is being migrated from one aggregate skill plus `references/sages.yaml` into a set of
+repo-discoverable skills under `.agents/skills/`:
 
-## MVP Scope
+- `sage-talk`: the router and orchestrator skill.
+- `sage-*`: independent single-sage skills, one per thinker.
 
-SageTalk currently supports 8 sages:
+The router should coordinate perspectives; individual sage skills should own their own evidence,
+life-stage model, voice, reasoning heuristics, and honest boundaries.
 
-- 孔子: role ethics, trust, ritual order, cultivation
-- 孟子: moral courage, righteousness vs profit, humaneness
-- 老子: non-coercive action, simplicity, reversal, restraint
-- 庄子: frame-breaking, freedom, uselessness, perspective shifts
-- 墨子: public benefit, anti-aggression, frugality, merit
-- 韩非子: incentives, institutions, power asymmetry, rule enforcement
-- 孙子: strategy, cost, timing, terrain, victory without battle
-- 王阳明: conscience, unity of knowing and acting, practice under pressure
+## Current Status
 
-## What It Does
+This repository has completed the first pass of the original eight single-sage leaf skills.
 
-Users can bring:
+What exists now:
 
-- a decision they need to make
-- a real-world difficulty
-- a dilemma with no clean answer
-- emotional, relationship, career, learning, or social confusion
-- an ongoing dialogue with one sage or a council of sages
+- canonical repo skill directory: `.agents/skills/`
+- `sage-talk` router scaffold with routing references
+- implemented `sage-confucius`, `sage-mencius`, `sage-laozi`, `sage-zhuangzi`, `sage-hanfeizi`,
+  `sage-sunzi`, `sage-mozi`, and `sage-wang-yangming` leaf skills
+- no remaining scaffold among the original eight planned `sage-*` directories
+- shared distillation method, schema, and single-sage template
+- legacy seed files preserved for later extraction
 
-By default, SageTalk selects 3-5 contrasting sages, generates parallel answers, then summarizes:
+What is intentionally not done yet:
 
-- where they disagree
-- where they agree
-- who each answer fits
-- what risks to watch
-- what the user can do next in real life
+- the legacy aggregate profile has not been split into individual source files
+- `references/sages.yaml` is not canonical anymore; it is only a migration seed
 
-## Interaction Modes
-
-### Default Council
+## Repository Structure
 
 ```text
-我现在该不该换工作？
-我和家人关系很紧张怎么办？
-我想创业，但又怕失败。
-我应该坚持还是放弃？
+.
+├── AGENTS.md
+├── LICENSE
+├── README.md
+├── .agents/
+│   └── skills/
+│       ├── sage-talk/
+│       │   ├── SKILL.md
+│       │   ├── README.md
+│       │   ├── examples/
+│       │   │   └── README.md
+│       │   └── references/
+│       │       ├── council-protocol.md
+│       │       ├── routing-rules.md
+│       │       └── sage-registry.yaml
+│       ├── sage-confucius/
+│       │   └── SKILL.md
+│       ├── sage-mencius/
+│       │   └── SKILL.md
+│       ├── sage-laozi/
+│       │   └── SKILL.md
+│       ├── sage-zhuangzi/
+│       │   └── SKILL.md
+│       ├── sage-mozi/
+│       │   └── SKILL.md
+│       ├── sage-hanfeizi/
+│       │   └── SKILL.md
+│       ├── sage-sunzi/
+│       │   └── SKILL.md
+│       └── sage-wang-yangming/
+│           └── SKILL.md
+├── shared/
+│   ├── references/
+│   │   └── distillation-method.md
+│   ├── schemas/
+│   │   └── sage-profile.schema.yaml
+│   └── templates/
+│       └── sage-skill-template/
+│           ├── SKILL.md
+│           ├── README.md
+│           ├── examples/
+│           │   └── dialogues.md
+│           └── references/
+│               ├── profile.yaml
+│               └── source-notes.md
+├── references/
+│   ├── sage-profile-template.yaml
+│   └── sages.yaml
+├── evals/
+│   ├── README.md
+│   ├── check-static.sh
+│   └── immersive-conversation.md
+├── examples/
+│   └── dialogues.md
+└── legacy/
+    └── single-skill/
+        ├── README.md
+        └── SKILL.md
 ```
 
-### Single Sage
+## Skill Responsibilities
 
-```text
-切换到孔子
-让老子回答
-从韩非子的角度看这件事
-用王阳明的视角继续跟我聊
-```
+### `.agents/skills/sage-talk/`
 
-### Multi-Sage Review
+Canonical router skill for Codex.
 
-```text
-让孔子、庄子、韩非子一起回答
-群贤会审：我现在要不要离职创业？
-```
+It owns:
 
-### Comparison
+- request parsing
+- default council selection
+- named council orchestration
+- comparison orchestration
+- follow-up context handling
+- synthesis of disagreement, agreement, risks, fit, and practical next actions
 
-```text
-比较孟子和墨子对这个问题的看法
-如果是孙子和老子，会怎么建议我？
-```
+It must not own complete sage personas.
 
-### Follow-Up
+### `.agents/skills/sage-*`
 
-```text
-孔子为什么会这样判断？
-庄子的建议适合现在的职场吗？
-韩非子的方案风险是什么？
-```
+Each `sage-*` directory is reserved for one independent single-sage skill.
 
-## Output Shape
+Each completed single-sage skill should own:
 
-Typical council output:
+- trigger conditions for that sage
+- source basis and evidence caveats
+- life stages or situations
+- worldview and value tensions
+- mental models
+- decision heuristics
+- anti-patterns
+- tone and voice rules
+- honest boundaries
+- examples showing the answer shape
 
-```markdown
-【问题重述】
+Currently implemented:
 
-【圣贤：孔子（周游列国受挫期）】
-- 判断：
-- 先看见的矛盾：
-- 建议：
-- 理由：
-- 提醒：
-- 适合/不适合：
+- `sage-confucius`
+- `sage-mencius`
+- `sage-laozi`
+- `sage-zhuangzi`
+- `sage-hanfeizi`
+- `sage-sunzi`
+- `sage-mozi`
+- `sage-wang-yangming`
 
-【圣贤：老子（乱世旁观与退藏视角）】
-...
+All original eight `sage-*` directories are implemented as independent leaf skills.
 
-【分歧点】
-【共识点】
-【适用人群】
-【风险提醒】
-【现实落地建议】
-```
+### `shared/`
+
+Shared support files for the monorepo:
+
+- `shared/references/distillation-method.md`: method for extracting a sage's cognitive operating system.
+- `shared/schemas/sage-profile.schema.yaml`: profile contract for independent sage skills.
+- `shared/templates/sage-skill-template/`: starter shape for future `sage-*` skills.
+
+Shared files define method and structure, not complete sage personas.
+
+### `references/`
+
+Legacy migration seeds.
+
+`references/sages.yaml` is preserved so future phases can extract one sage at a time. It is not the
+canonical source of truth for new work.
+
+### `examples/`
+
+Legacy aggregate examples from the former single-skill layout. New router examples should go under
+`.agents/skills/sage-talk/examples/`; new single-sage examples should go under that sage's own skill.
+
+### `legacy/`
+
+`legacy/single-skill/SKILL.md` preserves the former aggregate skill during migration. It is not the
+canonical runtime path.
+
+### `evals/`
+
+Lightweight evaluation assets for the skill monorepo. `check-static.sh` validates structure and
+regression-prone text patterns; `immersive-conversation.md` lists manual conversation cases.
 
 ## Design Principles
 
@@ -108,80 +178,14 @@ Typical council output:
 - Do not make all sages sound alike.
 - Do not modernize ancient thinkers until they become unrecognizable.
 - Do not deify ancient thinkers until they become unusable.
-- Preserve school-level conflict: Confucian, Daoist, Mohist, Legalist, military, and Neo-Confucian answers should disagree.
-- Transfer principles to modern issues by analogy; do not pretend ancient thinkers knew modern facts.
+- Preserve school-level conflict.
+- Transfer principles to modern issues by analogy.
 - Label weak historical or stage-specific claims as inference.
+- Keep router logic separate from single-sage persona logic.
 
-## Repository Structure
+## Migration Plan
 
-```text
-.
-├── SKILL.md
-├── README.md
-├── references/
-│   ├── distillation-method.md
-│   ├── sage-profile-template.yaml
-│   └── sages.yaml
-└── examples/
-    └── dialogues.md
-```
-
-## Key Files
-
-- `SKILL.md`: runtime instructions, trigger conditions, mode parsing, sage selection, response protocol, and quality checks.
-- `references/sages.yaml`: structured profiles for all supported sages.
-- `references/distillation-method.md`: adapted distillation method for ancient figures.
-- `references/sage-profile-template.yaml`: template for adding more sages.
-- `examples/dialogues.md`: sample inputs and expected output style.
-
-## Extending SageTalk
-
-To add another sage, copy the structure from `references/sage-profile-template.yaml` and add the completed profile to `references/sages.yaml`.
-
-Required fields:
-
-- `name`
-- `era`
-- `life_stages`
-- `context`
-- `worldview`
-- `mental_models`
-- `decision_heuristics`
-- `anti_patterns`
-- `tone_style`
-- `honest_boundaries`
-
-Before adding a profile, use `references/distillation-method.md` to distinguish:
-
-- primary texts
-- letters, sayings, or collected writings
-- historical biographies
-- disciple records
-- reliable commentaries
-- later legends or weakly evidenced interpretations
-
-## Honest Boundaries
-
-SageTalk is a reasoning and reflection aid, not a historical oracle.
-
-- It does not fabricate ancient quotations.
-- It does not treat later stories as reliable history.
-- It does not pretend ancient figures know current events or modern technical details.
-- It marks uncertain stage interpretations as inference.
-- It should not replace professional advice for legal, medical, financial, or safety-critical decisions.
-
-## Example
-
-```text
-用户：我想创业，但又怕失败。如果是孙子和老子，会怎么建议我？
-```
-
-```text
-孙子会先问：你有没有做过庙算，是否必须正面开战。
-老子会先问：你创业是顺势而为，还是为了证明自己。
-
-现实落地建议：两周内只做一个最小付费实验，不辞职、不融资、不讲宏大故事。
-```
-
-See `examples/dialogues.md` for fuller examples.
-
+1. Establish the `.agents/skills` monorepo skeleton and shared contracts.
+2. Implement `sage-talk` as the router/orchestrator with a lightweight registry.
+3. Extract single-sage skills one at a time from legacy seeds.
+4. Archive or remove the legacy aggregate layout after parity checks.

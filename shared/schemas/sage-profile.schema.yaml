@@ -1,0 +1,58 @@
+# Schema for independent `sage-*` profile files.
+# This is a human-readable contract for migration; add machine validation later if needed.
+
+type: object
+required:
+  - id
+  - name
+  - aliases
+  - era
+  - source_basis
+  - life_stages
+  - context
+  - worldview
+  - mental_models
+  - decision_heuristics
+  - anti_patterns
+  - tone_style
+  - honest_boundaries
+properties:
+  id:
+    type: string
+    description: Stable ASCII id matching the skill directory suffix.
+  name:
+    type: string
+    description: Primary Chinese display name.
+  aliases:
+    type: array
+    items:
+      type: string
+  era:
+    type: string
+  source_basis:
+    type: object
+    properties:
+      primary:
+        type: array
+      historical:
+        type: array
+      commentarial:
+        type: array
+      cautions:
+        type: array
+  life_stages:
+    type: array
+  context:
+    type: object
+  worldview:
+    type: object
+  mental_models:
+    type: array
+  decision_heuristics:
+    type: array
+  anti_patterns:
+    type: array
+  tone_style:
+    type: object
+  honest_boundaries:
+    type: array

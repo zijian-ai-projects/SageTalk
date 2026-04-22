@@ -1,4 +1,6 @@
-# Copy this template to add a new sage to references/sages.yaml.
+# Legacy aggregate-profile template.
+# For new independent skills, prefer `shared/templates/sage-skill-template/`.
+# This file remains only to help interpret the legacy `references/sages.yaml` seed.
 
 - id: short-ascii-id
   name: 中文名
@@ -55,4 +57,3 @@
       - "不要写成什么样"
   honest_boundaries:
     - "不能确定或不能越界的地方"
-
