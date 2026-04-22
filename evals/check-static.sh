@@ -95,6 +95,14 @@ if sed -n '1,12p' .agents/skills/sage-talk/SKILL.md | grep -E 'Route and orchest
 fi
 pass "sage-talk frontmatter avoids routing setup language"
 
+test -x scripts/install-codex-skills.sh || fail "missing executable Codex skills installer"
+grep -q 'CODEX_HOME' scripts/install-codex-skills.sh || fail "installer missing CODEX_HOME support"
+grep -q '.agents/skills' scripts/install-codex-skills.sh || fail "installer missing repo skills source"
+grep -q 'sage-talk' scripts/install-codex-skills.sh || fail "installer missing sage-talk install target"
+grep -q 'sage-wang-yangming' scripts/install-codex-skills.sh || fail "installer missing all leaf skill targets"
+grep -q -- '--force' scripts/install-codex-skills.sh || fail "installer missing force option"
+pass "Codex skills pack installer exists"
+
 test -f README_EN.md || fail "missing README_EN.md"
 test -f README_JA.md || fail "missing README_JA.md"
 test -f README_KO.md || fail "missing README_KO.md"
@@ -125,6 +133,7 @@ grep -q '## Ejemplos' README_ES.md || fail "Spanish README missing examples sect
 grep -q '## Instalación' README_ES.md || fail "Spanish README missing install section"
 for doc in README.md README_EN.md README_JA.md README_KO.md README_ES.md; do
   grep -q 'git clone git@github.com:zijian-ai-projects/SageTalk.git' "$doc" || fail "$doc missing clone command"
+  grep -q 'install-codex-skills.sh' "$doc" || fail "$doc missing installer command"
   grep -q '.agents/skills' "$doc" || fail "$doc missing canonical skill directory"
   grep -q 'sage-talk' "$doc" || fail "$doc missing sage-talk entrypoint"
 done

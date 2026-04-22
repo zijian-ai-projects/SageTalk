@@ -54,7 +54,32 @@ Expected contrast:
 
 ## Install
 
-### Option 1: Use SageTalk as a Codex repo-skill repository
+### One-command install into global Codex skills
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/zijian-ai-projects/SageTalk/main/scripts/install-codex-skills.sh | sh
+```
+
+Restart Codex after installation. This command installs `sage-talk` and every `sage-*` leaf skill as a
+pack.
+
+### Option 2: Clone and install locally
+
+```bash
+git clone git@github.com:zijian-ai-projects/SageTalk.git
+cd SageTalk
+scripts/install-codex-skills.sh
+```
+
+Options:
+
+```bash
+scripts/install-codex-skills.sh --force
+scripts/install-codex-skills.sh --dest /path/to/skills
+scripts/install-codex-skills.sh --dry-run
+```
+
+### Option 3: Use SageTalk as a Codex repo-skill repository
 
 ```bash
 git clone git@github.com:zijian-ai-projects/SageTalk.git
@@ -63,7 +88,7 @@ cd SageTalk
 
 Open this repository in Codex. Codex discovers repo skills from `.agents/skills/`.
 
-### Option 2: Copy into your own repository
+### Option 4: Copy into your own repository
 
 ```bash
 mkdir -p /path/to/your-repo/.agents
@@ -72,16 +97,6 @@ cp -R .agents/skills /path/to/your-repo/.agents/
 
 Open your target repository in Codex. `sage-talk` and the `sage-*` skills will be discovered as repo
 skills for that project.
-
-### Option 3: Install into global Codex skills
-
-```bash
-mkdir -p "${CODEX_HOME:-$HOME/.codex}/skills"
-cp -R .agents/skills/* "${CODEX_HOME:-$HOME/.codex}/skills/"
-```
-
-Restart Codex after copying. Copy all `sage-*` directories as well, because `sage-talk` routes to
-those sibling skills.
 
 ## Platform Support
 

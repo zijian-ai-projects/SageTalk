@@ -2,43 +2,45 @@
 
 ## Current Phase
 
-Phase 17: adopt nuwa-style multilingual README files.
+Phase 18: add a Codex skills pack installer while preserving the multi-skill monorepo architecture.
 
 ## Goal
 
-Change the README presentation to match the public `nuwa-skill` style: root Chinese README with
-language links, plus separate English, Japanese, Korean, and Spanish README files. Preserve accurate
-platform boundaries and installation instructions across all languages.
+Make SageTalk easier to install by adding a single installer script that copies `sage-talk` and all
+implemented `sage-*` leaf skills into the target Codex skills directory. This keeps the router + leaf
+skill design intact while giving users a one-command installation path similar in convenience to
+single-skill repositories.
 
 ## Milestones
 
-1. Update static README checks for nuwa-style filenames and sections.
-2. Confirm the new static check fails before the new README files exist.
-3. Replace root `README.md` with a Chinese main document.
-4. Add `README_EN.md`, `README_JA.md`, `README_KO.md`, and `README_ES.md`.
-5. Remove previous split files `README.zh-CN.md` and `README.en.md`.
-6. Record this phase in `.logs/phase-17-readme-nuwa-multilingual.md`.
+1. Add static checks for an executable installer script.
+2. Confirm the static check fails before the installer exists.
+3. Create `scripts/install-codex-skills.sh`.
+4. Update all README language files with the one-command installer.
+5. Record this phase in `.logs/phase-18-codex-pack-installer.md`.
+6. Run installer dry-run and local temp install checks.
 7. Run `sh evals/check-static.sh`.
 
 ## In Scope For This Round
 
-- README naming and content.
-- Chinese, English, Japanese, Korean, and Spanish documentation.
-- Static eval guardrails for the multilingual README structure.
-- Process log for this documentation phase.
+- Codex skills pack installer.
+- README installation instructions in all supported languages.
+- Static eval guardrails for installer presence and docs.
+- Process log for the installer phase.
 
 ## Out Of Scope For This Round
 
-- Changing skill behavior.
-- Adding generated translation tooling.
-- Adding an installer script.
-- Changing the `.agents/skills/` canonical path.
+- Publishing to npm.
+- Changing SageTalk into a single root `SKILL.md`.
+- Removing the `.agents/skills/` canonical repo-skill structure.
+- Adding new sages.
 - Committing or pushing unless explicitly requested.
 
 ## Acceptance Criteria
 
-- Root `README.md` is the Chinese main README and links to all other language files.
-- `README_EN.md`, `README_JA.md`, `README_KO.md`, and `README_ES.md` exist.
-- Old `README.zh-CN.md` and `README.en.md` are removed.
-- Every README documents install commands, `.agents/skills`, and `sage-talk`.
-- Static evals pass.
+- `scripts/install-codex-skills.sh` is executable.
+- The installer supports local source install, remote one-command install, `--dest`, `--force`, and
+  `--dry-run`.
+- All README files mention the installer command.
+- The installer can copy all nine skills into a temporary destination.
+- `sh evals/check-static.sh` passes.
